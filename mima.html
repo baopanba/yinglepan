@@ -1,9 +1,19 @@
-<script>
-        function checkpassword(){
-        var pwd="1234567";//你和朋友约定的密码，写死的
-        var inpwd=document.getElementById("password").value;//获取输入的代码
-        if(pwd == inpwd){  //判断一下是否一样
-            window.location.href="http://www.baidu.com";
-    }
-}
-</script>
+<html>
+    <head><title>test</title>
+        <script>
+            function fun() {
+                var password=document.getElementById("password");
+                if (password.value == "123") {
+                       window.open("<a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>");
+                        return true;
+                }else {
+                    return false;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="password" name="password" id="passsword"/>
+        <input type="button" value="跳转" onclick=" return fun()"/>
+    </body>
+</html>
