@@ -1,0 +1,93 @@
+<html>
+<head>
+<title>Homework</title>
+<meta charset="UTF-8">
+<style type="text/css">
+<!--
+body{font-family: "Microsoft Yahei","Helvetica Neue",Helvetica,Arial,sans-serif;}
+.none{display:none;}
+.content{text-align: center;}
+.btn{display: inline-block;padding: 6px 12px 4px;margin-bottom: 0;font-size: 12px;line-height: 20px;text-align: center;vertical-align: middle;cursor: pointer;border: 0;border-radius: 0;color: #fff;background-color: #4AA3F5;}
+textarea{width:75%;height:auto;}
+h1{display: inline;font-size: 30px;line-height: 10px;margin: 0;border: 0;padding: 0;background: transparent;text-shadow: 1px 1px 1px rgba(0,0,0,0.2);text-align: center;}
+ul li{list-style: none;background: url(data:image/gif;base64,R0lGODlhDQAFAKIAAKOjo6GhoampqYSEhJWVlZ2dnZmZmXx8fCH5BAAAAAAALAAAAAANAAUAAAMVKLfcB6PIScsZJuttLvlgSByK4wQJADs=) no-repeat 0 10px;margin-bottom: 10px;padding-right: 40px;}
+ol li{list-style:decimal;margin-left: 28px;}
+h2{color: #bbb;font-weight: normal;}
+a{text-decoration: none;color: #2B97F5;line-height: 30px;text-shadow: 1px 1px 1px rgba(105, 105, 105, 0.2);}
+a:hover{line-height: 32px;text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.2);}
+.list{margin:auto;}
+@media (min-width:720px){.list{width:60%;}.content{border: 1px #dfdfdf solid;padding: 50px;margin: 50px;padding-bottom:20px;}}
+-->
+</style>
+</head>
+<body>
+<div class="content">
+<?php 
+$pass='123456';
+if(isset($_POST['is_login']) AND !isset($_POST['pw'])){
+echo '
+<form method="POST" action="index.php">
+    <p>
+            <input name="is_login" class="none">
+        <label for="password">暗号<br>
+        <input type="text" name="pw" id="password" size="20"></label>
+    </p>
+            <input type="submit" class="btn" value="管理">
+</form>
+';
+}elseif(isset($_POST['is_login']) AND $_POST['pw']!=$pass){
+echo '
+<form method="POST" action="index.php">
+<p>暗号出错=w=</p>
+    <p>
+            <input name="is_login" class="none">
+        <label for="password">暗号<br>
+        <input type="text" name="pw" id="password" size="20"></label>
+    </p>
+            <input type="submit" class="btn" value="再来一次">
+</form>
+';
+}elseif(isset($_POST['is_login']) AND $_POST['pw']=$pass){
+echo '
+<form method="POST" action="index.php">
+        <input type="text" class="none" name="pw" id="password" size="20" value="'.$pass.'">
+';
+if(file_get_contents('get.txt')!=''){
+echo '<textarea rows="15" cols="20" name="value">
+'.file_get_contents('get.txt').'
+</textarea>';
+}else{
+echo '<textarea rows="15" cols="20" name="value"></textarea>';
+}
+echo'<br>
+            <input type="submit" class="btn" value="提交">
+</form>
+';
+}elseif($_POST['pw']=$pass AND isset($_POST['value'])){
+unlink('get.txt');
+ $file  = 'get.txt';
+ $content = $_POST['value'];
+ if($f  = file_put_contents($file, $content,FILE_APPEND)){
+  echo '更新成功~\(≧▽≦)/~<br /><a href="index.php">点此返回</a>';
+ }
+}elseif($_POST['pw']!=$pass AND isset($_POST['value'])){
+  echo "=w=出错了233";
+}
+else{
+echo '
+<h1>本周作业</h1>
+<div class="list">';
+if(file_exists('get.txt')){
+echo file_get_contents('get.txt');
+}
+echo '</div>
+<form method="POST" action="index.php">
+        <input name="is_login" class="none">
+            <input type="submit" class="btn" value="管理">
+</form>
+';
+}
+?>
+</div>
+</body>
+</html>
