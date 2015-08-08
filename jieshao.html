@@ -12,68 +12,13 @@
 $pass='123456';
 if(isset($_POST['is_login']) AND !isset($_POST['pw'])){
 echo '
-<form method="POST" action="index.php">
-    <p>
-            <input name="is_login" class="none">
-        <label for="password">暗号<br>
-        <input type="text" name="pw" id="password" size="20"></label>
-    </p>
-            <input type="submit" class="btn" value="管理">
-</form>
-';
-}elseif(isset($_POST['is_login']) AND $_POST['pw']!=$pass){
-echo '
-<form method="POST" action="index.php">
-<p>暗号出错=w=</p>
-    <p>
-            <input name="is_login" class="none">
-        <label for="password">暗号<br>
-        <input type="text" name="pw" id="password" size="20"></label>
-    </p>
-            <input type="submit" class="btn" value="再来一次">
-</form>
-';
-}elseif(isset($_POST['is_login']) AND $_POST['pw']=$pass){
-echo '
 <form method="POST" action="http://www.baidu.com">
-        <input type="text" class="none" name="pw" id="password" size="20" value="'.$pass.'">
-';
-if(file_get_contents('get.txt')!=''){
-echo '<textarea rows="15" cols="20" name="value">
-'.file_get_contents('get.txt').'
-</textarea>';
-}else{
-echo '<textarea rows="15" cols="20" name="value"></textarea>';
-}
-echo'<br>
-            <input type="submit" class="btn" value="提交">
-</form>
-';
-}elseif($_POST['pw']=$pass AND isset($_POST['value'])){
-unlink('get.txt');
- $file  = 'get.txt';
- $content = $_POST['value'];
- if($f  = file_put_contents($file, $content,FILE_APPEND)){
-  echo '更新成功~\(≧▽≦)/~<br /><a href="index.php">点此返回</a>';
- }
-}elseif($_POST['pw']!=$pass AND isset($_POST['value'])){
-  echo "=w=出错了233";
-}
-else{
-echo '
-<h1>本周作业</h1>
-<div class="list">';
-if(file_exists('get.txt')){
-echo file_get_contents('get.txt');
-}
-echo '</div>
-<form method="POST" action="index.php">
-        <input name="is_login" class="none">
+    <p>
+            <input name="is_login" class="none">
+        <label for="password">暗号<br>
+        <input type="text" name="pw" id="password" size="20"></label>
+    </p>
             <input type="submit" class="btn" value="管理">
-</form>
-';
-}
-?>
 </div>
 </body>
 </html>
