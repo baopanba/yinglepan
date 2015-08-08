@@ -1,19 +1,12 @@
-<html>
-    <head><title>test</title>
-        <script>
-            function fun() {
-                var password=document.getElementById("password");
-                if (password.value == "123") {
-                       window.open("<a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a>");
-                        return true;
-                }else {
-                    return false;
-                }
-            }
-        </script>
-    </head>
-    <body>
-        <input type="password" name="password" id="passsword"/>
-        <input type="button" value="跳转" onclick=" return fun()"/>
-    </body>
-</html>
+<script LANGUAGE="javascript">
+<!--
+loopy()
+function loopy() {
+var sWord =""
+while (sWord != "1234") {              //改为你自己的密码！
+sWord = prompt("输入正确密码才能登陆!本页密码:abcd")
+}
+alert("AH...你好，你是本站成员，欢迎光临！")
+}
+//-->
+</script>
